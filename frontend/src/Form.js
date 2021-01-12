@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sawo from "sawo";
 // import styles from "./styles"
 
-function App() {
+function Form() {
 
   // state values
   const [userPayload, setUserPayload] = useState({})
@@ -25,7 +25,7 @@ function App() {
     };
 
     // creating instance
-    let sawo = new Sawo(sawoConfig)
+ const sawo = new Sawo(sawoConfig)
 
     // calling method to show form
     sawo.showForm();
@@ -106,4 +106,4 @@ function App() {
   );
 }
 
-export default App;
+export default Form;

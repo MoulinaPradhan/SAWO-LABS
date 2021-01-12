@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Container,Col,Row,Button,Form} from 'react-bootstrap'
+import LoginScreen from './LoginScreen'
 
 const RegisterScreen = () => {
+  const [token, setToken] = useState();
+
+  if(!token) {
+    return <LoginScreen setToken={setToken} />
+  }
     return (
         <Container fluid>
             <Row className="justify-content-md-center">
