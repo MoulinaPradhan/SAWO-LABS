@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import Sawo from "sawo";
 // import styles from "./styles"
 
@@ -39,6 +40,7 @@ function Form() {
   const onSuccessLogin = async(payload) => {
     setUserPayload(payload);
     setIsLoggedIn(true);
+    return(<Redirect path="/login"/>)
   }
 
 
@@ -97,9 +99,13 @@ function Form() {
           {
             !isLoggedIn && (
               <div style={styles.formContainer} id="sawo-container">
+                
                 {/* Sawo form will appear here */}
               </div>
           )}
+          {/**trial */}
+          <button onClick={onSuccessLogin}>save</button>
+          {/**trial*/}
         </section>
       </div>
     </React.Fragment>

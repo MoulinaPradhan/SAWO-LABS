@@ -27,7 +27,7 @@ if(!token) {
     <Router>
         <Route path='/login' component={LoginScreen}/>
         <Route path='/register' component={RegisterScreen}/>
-        <Route path='/register' component={Form}/>
+        <Route path='/' component={Form} exact/>
     </Router>
   )
 }
