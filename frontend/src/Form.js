@@ -6,6 +6,7 @@ import Sawo from "sawo";
 function Form() {
 
   // state values
+  const [sdkReady, setSdkReady] = useState(false)
   const [userPayload, setUserPayload] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -24,7 +25,16 @@ function Form() {
       // Add a callback here to handle the payload sent by sdk
       onSuccess: onSuccessLogin
     };
+//trial//
+const script = document.createElement('script');
+script.src = `http://api.sawolabs.com/api/v1/userverify/`
+script.async = true
+script.onload = () => {
+  setSdkReady(true)
+}
+document.body.appendChild(script)
 
+//trial//
     // creating instance
  const sawo = new Sawo(sawoConfig)
 
@@ -40,6 +50,7 @@ function Form() {
   const onSuccessLogin = async(payload) => {
     setUserPayload(payload);
     setIsLoggedIn(true);
+    setSdkReady(true);
     return(<Redirect path="/login"/>)
   }
 
@@ -104,6 +115,7 @@ function Form() {
               </div>
           )}
           {/**trial */}
+    
           <button onClick={onSuccessLogin}>save</button>
           {/**trial*/}
         </section>
