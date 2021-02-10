@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import Sawo from "sawo";
-// import styles from "./styles"
+import styles from "./styles"
 
-function Form() {
+function App() {
 
   // state values
-  const [sdkReady, setSdkReady] = useState(false)
   const [userPayload, setUserPayload] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -19,24 +17,15 @@ function Form() {
       // should be same as the id of the container
       containerID: "sawo-container",
       // can be one of 'email' or 'phone_number_sms'
-      identifierType: "phone_number_sms",
+      identifierType: "email",
       // Add the API key
       apiKey: "3cd03d45-468b-4a01-902c-97b678143caf",
       // Add a callback here to handle the payload sent by sdk
       onSuccess: onSuccessLogin
     };
-//trial//
-const script = document.createElement('script');
-script.src = `http://api.sawolabs.com/api/v1/userverify/`
-script.async = true
-script.onload = () => {
-  setSdkReady(true)
-}
-document.body.appendChild(script)
 
-//trial//
     // creating instance
- const sawo = new Sawo(sawoConfig)
+    let sawo = new Sawo(sawoConfig)
 
     // calling method to show form
     sawo.showForm();
@@ -50,51 +39,14 @@ document.body.appendChild(script)
   const onSuccessLogin = async(payload) => {
     setUserPayload(payload);
     setIsLoggedIn(true);
-    setSdkReady(true);
-    return(<Redirect path="/login"/>)
   }
-
-
-  const styles = {
-    containerStyle: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f9f9f9"
-    },
-    sectionStyle: {
-        width: "500px",
-        height: "400px",
-        border: "1px",
-        borderColor: "black"
-    },
-
-    formContainer: {
-        padding: "1rem",
-        backgroundColor: "#f3f3f3",
-        height: "300px",
-        width: "400px",
-        borderRadius: "10px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    loggedin: {
-        olor: "#155724",
-        backgroundColor: "#d4edda",
-        borderColor: "#c3e6cb",
-        padding: "1rem"
-    }
-}
 
   return (
     <React.Fragment>
       
       <div style={styles.containerStyle}>
         <section>
-          <h1>SawoShop Auth</h1>
+          <h1>React | Sawo Form Example</h1>
           {/* Showing Successful login message */}
           {isLoggedIn && (
             <React.Fragment>
@@ -110,18 +62,13 @@ document.body.appendChild(script)
           {
             !isLoggedIn && (
               <div style={styles.formContainer} id="sawo-container">
-                
                 {/* Sawo form will appear here */}
               </div>
           )}
-          {/**trial */}
-    
-          <button onClick={onSuccessLogin}>save</button>
-          {/**trial*/}
         </section>
       </div>
     </React.Fragment>
   );
 }
 
-export default Form;
+export default App;

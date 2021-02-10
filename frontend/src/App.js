@@ -1,9 +1,9 @@
 import React from 'react'
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import Form from './Form'
-import RegisterScreen from './Screens/RegisterScreen'
-import LoginScreen from './Screens/LoginScreen'
-import useToken from './usetoken';
+// import RegisterScreen from './Screens/RegisterScreen'
+// import LoginScreen from './Screens/LoginScreen'
+// import useToken from './usetoken';
 
 // function setToken(userToken) {
 //   sessionStorage.setItem('token', JSON.stringify(userToken));
@@ -18,15 +18,13 @@ import useToken from './usetoken';
 
 
 const App = () => {
-  const { token, setToken } = useToken();
+//   const { token, setToken } = useToken();
 
-if(!token) {
-  return <LoginScreen setToken={setToken} />
-}
+// if(!token) {
+//   return <LoginScreen setToken={setToken} />
+// }
   return (
     <Router>
-        <Route path='/login' component={LoginScreen}/>
-        <Route path='/register' component={RegisterScreen}/>
         <Route path='/' component={Form} exact/>
     </Router>
   )
